@@ -72,12 +72,10 @@ public class WorkflowIntegrationTest {
 
     @BeforeAll
     void setupTestData() {
-        // Generate unique test identifiers
         String testSuffix = UUID.randomUUID().toString().substring(0, 8);
         testEmployerUsername = "employer_test_" + testSuffix;
         testFreelancerUsername = "freelancer_test_" + testSuffix;
         
-        // Create a payment type for testing if none exists
         List<PaymentType> existingPaymentTypes = paymentTypeRepository.findAll();
         if (existingPaymentTypes.isEmpty()) {
             paymentType = new PaymentType();
@@ -95,9 +93,7 @@ public class WorkflowIntegrationTest {
 
     @AfterAll
     void cleanupTestData() {
-        // Clean up test data without using deleteAll()
         try {
-            // Delete applications first (due to foreign key constraints)
             List<Application> testApplications = applicationRepository.findAll();
             for (Application app : testApplications) {
                 if (app.getUser() != null && 
@@ -107,7 +103,6 @@ public class WorkflowIntegrationTest {
                 }
             }
             
-            // Delete test jobs
             List<Job> testJobs = jobRepository.findAll();
             for (Job job : testJobs) {
                 if (job.getCreateByUser() != null && 
@@ -116,7 +111,6 @@ public class WorkflowIntegrationTest {
                 }
             }
             
-            // Delete test users
             List<User> testUsers = userRepository.findAll();
             for (User user : testUsers) {
                 if (user.getUsername().startsWith("employer_test_") || 
@@ -125,7 +119,6 @@ public class WorkflowIntegrationTest {
                 }
             }
         } catch (Exception e) {
-            // Log cleanup errors but don't fail the test
             System.err.println("Error during test cleanup: " + e.getMessage());
         }
     }
