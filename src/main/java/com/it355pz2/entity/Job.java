@@ -5,8 +5,8 @@ import com.it355pz2.entity.enums.JobType;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -67,7 +67,7 @@ public class Job {
     private String updatedAt;
 
     @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<JobCategory> jobCategories = new ArrayList<>();
+    private Set<JobCategory> jobCategories = new HashSet<>();
 
 
 }

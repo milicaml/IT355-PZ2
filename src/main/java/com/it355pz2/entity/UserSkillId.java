@@ -4,11 +4,32 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class UserSkillId implements Serializable {
-    private final Long userId;
-    private final Long skillId;
+    private Long userId;
+    private Long skillId;
+
+    // Default constructor required by Hibernate
+    public UserSkillId() {
+    }
 
     public UserSkillId(Long userId, Long skillId) {
         this.userId = userId;
+        this.skillId = skillId;
+    }
+
+    // Getters and setters required by Hibernate
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getSkillId() {
+        return skillId;
+    }
+
+    public void setSkillId(Long skillId) {
         this.skillId = skillId;
     }
 

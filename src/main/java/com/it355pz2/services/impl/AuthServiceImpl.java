@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 import static com.it355pz2.utility.TokenUtility.getTokenFromBearer;
+import static com.it355pz2.utility.DateUtility.getCurrentDateTime;
 
 @AllArgsConstructor
 @Service
@@ -38,12 +39,14 @@ public class AuthServiceImpl implements AuthService {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        System.out.println("AuthService - Login authorities: " + authentication.getAuthorities());
+
         String token = jwtTokenProvider.generateToken(authentication);
 
         Token tokenEntity = new Token();
         tokenEntity.setToken(token);
-        tokenEntity.setCreatedAt(new Date().toString());
-        tokenEntity.setUpdatedAt(new Date().toString());
+        tokenEntity.setCreatedAt(getCurrentDateTime());
+        tokenEntity.setUpdatedAt(getCurrentDateTime());
 //        tokenEntity.setUser((User) authentication.getPrincipal());
         tokenEntity.setUser(null); //! This need to be changed
         tokenEntity.setExpiresAt(new Date().toString()); //! This need to be changed
@@ -62,9 +65,9 @@ public class AuthServiceImpl implements AuthService {
         user.setEmail(registerDto.getEmail());
         user.setPhone(registerDto.getPhone());
         user.setCity(registerDto.getCity());
-        user.setCreatedAt(new Date().toString());
-        user.setUpdatedAt(new Date().toString());
-        user.setUserType(UserType.freelancer);
+        user.setCreatedAt(getCurrentDateTime());
+        user.setUpdatedAt(getCurrentDateTime());
+        user.setUserType(registerDto.getUserType());
         userRepository.save(user);
     }
 

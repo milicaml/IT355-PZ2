@@ -16,4 +16,5 @@ public class JobUpdate {
     private double paymentAmount;
     private String paymentType;
     private int urgent;
+    private java.util.List<Number> categoryIds;
 }

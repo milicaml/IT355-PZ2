@@ -4,11 +4,32 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class JobCategoryId implements Serializable {
-    private final Long jobId;
-    private final Long categoryId;
+    private Long jobId;
+    private Long categoryId;
+
+    // Default constructor required by Hibernate
+    public JobCategoryId() {
+    }
 
     public JobCategoryId(Long jobId, Long categoryId) {
         this.jobId = jobId;
+        this.categoryId = categoryId;
+    }
+
+    // Getters and setters required by Hibernate
+    public Long getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(Long jobId) {
+        this.jobId = jobId;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 

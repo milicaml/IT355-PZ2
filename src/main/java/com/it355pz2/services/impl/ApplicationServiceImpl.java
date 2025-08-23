@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Date;
+import static com.it355pz2.utility.DateUtility.getCurrentDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -25,16 +26,24 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public ApplicationResponse createApplication(Long userId, Long jobId, String description) {
         if (userId == null || jobId == null || description == null) return null;
-        User user =userRepository.findById(userId).orElse(null);
+        
+        // Check if user has already applied for this job
+        if (applicationRepository.existsByUserIdAndJobIdAndIsDeletedFalse(userId, jobId)) {
+            System.out.println("ApplicationService - User " + userId + " has already applied for job " + jobId);
+            return null;
+        }
+        
+        User user = userRepository.findById(userId).orElse(null);
         if (user == null) return null;
         Job job = jobRepository.findById(jobId).orElse(null);
         if (job == null) return null;
+        
         Application application = new Application();
         application.setUser(user);
         application.setJob(job);
         application.setDescription(description);
         application.setStatus(ApplicationStatus.pending);
-        application.setCreatedAt(new Date().toString());
+        application.setCreatedAt(getCurrentDateTime());
         application.setUpdatedAt(new Date().toString());
 
         return new ApplicationResponse(applicationRepository.save(application));
@@ -51,6 +60,21 @@ public class ApplicationServiceImpl implements ApplicationService {
     public List<ApplicationResponse> getApplicationsByUser(Long userId) {
         List<Application> applications = applicationRepository.findAllByUserId(userId);
         return applications.stream().map(ApplicationResponse::new).toList();
+    }
+
+    @Override
+    public List<ApplicationResponse> getApplicationsForEmployer(Long employerId) {
+        // Get all jobs posted by the employer, then get applications for those jobs
+        List<Job> employerJobs = jobRepository.findAllByCreateByUserIdAndIsDeletedFalse(employerId);
+        List<Application> allApplications = applicationRepository.findAll();
+        
+        // Filter applications to only include those for jobs posted by the employer
+        List<Application> employerApplications = allApplications.stream()
+            .filter(application -> employerJobs.stream()
+                .anyMatch(job -> job.getId().equals(application.getJob().getId())))
+            .toList();
+        
+        return employerApplications.stream().map(ApplicationResponse::new).toList();
     }
 
     @Override
@@ -83,8 +107,10 @@ public class ApplicationServiceImpl implements ApplicationService {
         application.setStatus(status);
         applicationRepository.save(application);
         return new ApplicationResponse(application);
-
     }
 
-
+    @Override
+    public boolean hasUserAppliedForJob(Long userId, Long jobId) {
+        return applicationRepository.existsByUserIdAndJobIdAndIsDeletedFalse(userId, jobId);
+    }
 }

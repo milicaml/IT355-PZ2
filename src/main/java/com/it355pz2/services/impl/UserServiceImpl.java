@@ -3,6 +3,7 @@ package com.it355pz2.services.impl;
 import com.it355pz2.dto.UserResponse;
 import com.it355pz2.dto.UserUpdate;
 import com.it355pz2.entity.User;
+import com.it355pz2.entity.enums.UserType;
 import com.it355pz2.repository.UserRepository;
 import com.it355pz2.services.UserService;
 import lombok.AllArgsConstructor;

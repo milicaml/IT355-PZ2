@@ -14,4 +14,6 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
     List<Application> findAllByUserId(Long userId);
 
     List<Application> findAllByJobIdAndStatus(Long jobId, ApplicationStatus status);
+    
+    boolean existsByUserIdAndJobIdAndIsDeletedFalse(Long userId, Long jobId);
 }

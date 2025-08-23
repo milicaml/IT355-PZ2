@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JobCategoryRepository extends JpaRepository<JobCategory, JobCategoryId> {
+    java.util.List<JobCategory> findByJobId(Long jobId);
 }

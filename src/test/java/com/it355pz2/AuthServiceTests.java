@@ -62,6 +62,7 @@ public class AuthServiceTests {
         dto.setEmail("email");
         dto.setPhone("123");
         dto.setCity("Niš");
+        dto.setUserType(UserType.freelancer); // Added userType
 
         when(passwordEncoder.encode("1234")).thenReturn("hashed1234");
 
@@ -78,7 +79,6 @@ public class AuthServiceTests {
 
     @Test
     void shouldLoginUser() {
-        // Arrange
         LoginDto loginDto = new LoginDto();
         loginDto.setUsername("milica");
         loginDto.setPassword("1234");
@@ -89,37 +89,29 @@ public class AuthServiceTests {
                 .thenReturn(authentication);
         when(jwtTokenProvider.generateToken(authentication)).thenReturn("jwt-token");
 
-        // Act
         String token = authService.login(loginDto);
 
-        // Assert
         assertThat(token).isEqualTo("jwt-token");
         verify(tokenRepository).save(any(Token.class));
     }
 
     @Test
     void shouldValidateTokenSuccessfully() {
-        // Arrange
         String header = "Bearer valid-token";
         when(jwtTokenProvider.validateToken("valid-token")).thenReturn(true);
 
-        // Act
         boolean result = authService.validate(header);
 
-        // Assert
         assertThat(result).isTrue();
     }
 
     @Test
     void shouldFailTokenValidation() {
-        // Arrange
         String header = "Bearer invalid-token";
         when(jwtTokenProvider.validateToken("invalid-token")).thenReturn(false);
 
-        // Act
         boolean result = authService.validate(header);
 
-        // Assert
         assertThat(result).isFalse();
     }
 }

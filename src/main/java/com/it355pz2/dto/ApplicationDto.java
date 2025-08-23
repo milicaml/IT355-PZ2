@@ -5,5 +5,6 @@ import lombok.Data;
 
 @Data
 public class ApplicationDto {
-    private String description;
+    private Long jobId;
+    private String message;
 }

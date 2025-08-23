@@ -1,6 +1,7 @@
 package com.it355pz2.entity;
 
 import com.it355pz2.entity.enums.ProficiencyLevel;
+import com.it355pz2.entity.converter.ProficiencyLevelConverter;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,7 +19,7 @@ public class UserSkill {
     private Long skillId;
 
     @Column(name = "proficiency_level")
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = ProficiencyLevelConverter.class)
     private ProficiencyLevel level;
 
     @ManyToOne(fetch = FetchType.LAZY)

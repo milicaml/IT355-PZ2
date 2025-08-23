@@ -1,5 +1,6 @@
 package com.it355pz2.dto;
 
+import com.it355pz2.entity.enums.UserType;
 import lombok.*;
 
 @Setter
@@ -15,4 +16,5 @@ public class RegisterDto {
     private String email;
     private String phone;
     private String city;
+    private UserType userType;
 }
