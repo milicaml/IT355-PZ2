@@ -38,9 +38,6 @@ public class JwtTokenProvider {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        System.out.println("JWT Token Provider - Generating token for user: " + username);
-        System.out.println("JWT Token Provider - Roles: " + roles);
-
         Date currentDate = new Date();
         Date expireDate = new Date(currentDate.getTime() + jwtExpirationInMs);
 
@@ -70,40 +67,27 @@ public class JwtTokenProvider {
 
     public boolean validateToken(String token) {
         try {
-            System.out.println("JWT Token Provider - Validating token: " + token.substring(0, Math.min(20, token.length())) + "...");
-            
             var claims = Jwts.parserBuilder()
                     .setSigningKey(key())
                     .build()
                     .parseClaimsJws(token)
                     .getBody();
-            
+
             // Check if token is expired
             Date expiration = claims.getExpiration();
             Date now = new Date();
-            
-            if (expiration.before(now)) {
-                System.out.println("JWT Token Provider - Token is expired. Expiration: " + expiration + ", Current time: " + now);
-                return false;
-            }
-            
-            System.out.println("JWT Token Provider - Token validation successful. Expiration: " + expiration);
-            return true;
+
+            return !expiration.before(now);
         } catch (MalformedJwtException e) {
             logger.error("Invalid JWT token", e);
-            System.out.println("JWT Token Provider - Malformed JWT token: " + e.getMessage());
         } catch (ExpiredJwtException e) {
             logger.error("Expired JWT token", e);
-            System.out.println("JWT Token Provider - Expired JWT token: " + e.getMessage());
         } catch (UnsupportedJwtException e) {
             logger.error("Unsupported JWT token", e);
-            System.out.println("JWT Token Provider - Unsupported JWT token: " + e.getMessage());
         } catch (IllegalArgumentException e) {
             logger.error("JWT claims string is empty.", e);
-            System.out.println("JWT Token Provider - JWT claims string is empty: " + e.getMessage());
         } catch (Exception e) {
             logger.error("Unexpected JWT validation error", e);
-            System.out.println("JWT Token Provider - Unexpected error: " + e.getMessage());
         }
         return false;
     }
@@ -116,8 +100,6 @@ public class JwtTokenProvider {
                 .getBody();
 
         List<String> roles = claims.get("roles", List.class);
-        System.out.println("JWT Token Provider - Roles from token: " + roles);
-
         return roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 

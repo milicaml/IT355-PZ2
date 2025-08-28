@@ -1,13 +1,15 @@
 package com.it355pz2.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Data
 public class UserSkillId implements Serializable {
     private Long userId;
     private Long skillId;
 
-    // Default constructor required by Hibernate
     public UserSkillId() {
     }
 
@@ -16,7 +18,6 @@ public class UserSkillId implements Serializable {
         this.skillId = skillId;
     }
 
-    // Getters and setters required by Hibernate
     public Long getUserId() {
         return userId;
     }

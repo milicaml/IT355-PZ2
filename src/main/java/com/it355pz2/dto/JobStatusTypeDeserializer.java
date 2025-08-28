@@ -14,16 +14,14 @@ public class JobStatusTypeDeserializer extends JsonDeserializer<JobStatusType> {
         if (value == null) {
             return null;
         }
-        
+
         try {
-            // First try to find by value directly (for lowercase values like "open")
             for (JobStatusType statusType : JobStatusType.values()) {
                 if (statusType.getValue().equals(value)) {
                     return statusType;
                 }
             }
-            
-            // If not found by value, try to convert to enum name
+
             return JobStatusType.valueOf(value.toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Invalid job status type: " + value);

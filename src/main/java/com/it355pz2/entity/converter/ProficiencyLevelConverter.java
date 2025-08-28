@@ -12,14 +12,14 @@ public class ProficiencyLevelConverter implements AttributeConverter<Proficiency
         if (proficiencyLevel == null) {
             return null;
         }
-        return proficiencyLevel.getLevel(); // Use the lowercase string value
+        return proficiencyLevel.getLevel();
     }
 
     @Override
     public ProficiencyLevel convertToEntityAttribute(String dbData) {
         if (dbData == null) {
-            return ProficiencyLevel.BEGINNER; // Default value
+            return ProficiencyLevel.BEGINNER;
         }
-        return ProficiencyLevel.fromString(dbData); // Use our custom fromString method
+        return ProficiencyLevel.fromString(dbData);
     }
 }

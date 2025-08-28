@@ -23,10 +23,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+
 import static com.it355pz2.utility.DateUtility.getCurrentDateTime;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
+
 import com.it355pz2.entity.enums.JobType;
 
 @AllArgsConstructor
@@ -45,7 +48,6 @@ public class JobServiceImpl implements JobService {
     public List<JobResponse> getJobs() {
         List<Job> jobs = jobRepository.findAllByIsDeletedFalse();
         return jobs.stream().map(job -> {
-            // Load categories for each job
             List<JobCategory> jobCategories = jobCategoryRepository.findByJobId(job.getId());
             List<String> categoryNames = new ArrayList<>();
             for (JobCategory jobCategory : jobCategories) {
@@ -60,30 +62,23 @@ public class JobServiceImpl implements JobService {
         }).toList();
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     @Transactional(readOnly = true)
     public Page<JobResponse> getJobsPaginated(Pageable pageable, String location, String search, String type) {
-        System.out.println("JobServiceImpl - getJobsPaginated called with location=" + location + ", search=" + search + ", type=" + type);
-        
         Page<Job> jobsPage;
-        
-        // Convert string type to enum if provided
+
         JobType jobType = null;
         if (type != null && !type.trim().isEmpty()) {
             try {
                 jobType = JobType.valueOf(type.trim());
             } catch (IllegalArgumentException e) {
-                System.out.println("JobServiceImpl - Invalid job type: " + type);
-                // Return empty page for invalid type
                 jobsPage = jobRepository.findAllByIsDeletedFalse(pageable);
                 return jobsPage.map(job -> {
                     List<JobCategory> jobCategories = jobCategoryRepository.findByJobId(job.getId());
                     List<String> categoryNames = new ArrayList<>();
                     for (JobCategory jobCategory : jobCategories) {
-                        Category category = categoryRepository.findById(jobCategory.getCategoryId()).orElse(null);
-                        if (category != null) {
-                            categoryNames.add(category.getTitle());
-                        }
+                        categoryRepository.findById(jobCategory.getCategoryId()).ifPresent(category -> categoryNames.add(category.getTitle()));
                     }
                     JobResponse response = new JobResponse(job);
                     response.setCategories(categoryNames);
@@ -91,50 +86,38 @@ public class JobServiceImpl implements JobService {
                 });
             }
         }
-        
-        // Apply filters based on provided parameters
-        if (location != null && !location.trim().isEmpty() && 
-            search != null && !search.trim().isEmpty() && 
-            jobType != null) {
-            // All three filters
+
+        if (location != null && !location.trim().isEmpty() &&
+                search != null && !search.trim().isEmpty() &&
+                jobType != null) {
             jobsPage = jobRepository.findAllByIsDeletedFalseAndLocationAndTypeAndTitleOrDescriptionContainingIgnoreCase(
-                pageable, location.trim(), jobType, search.trim());
-        } else if (location != null && !location.trim().isEmpty() && 
-                   search != null && !search.trim().isEmpty()) {
-            // Location and search filters
+                    pageable, location.trim(), jobType, search.trim());
+        } else if (location != null && !location.trim().isEmpty() &&
+                search != null && !search.trim().isEmpty()) {
             jobsPage = jobRepository.findAllByIsDeletedFalseAndLocationAndTitleOrDescriptionContainingIgnoreCase(
-                pageable, location.trim(), search.trim());
-        } else if (location != null && !location.trim().isEmpty() && 
-                   jobType != null) {
-            // Location and type filters
+                    pageable, location.trim(), search.trim());
+        } else if (location != null && !location.trim().isEmpty() &&
+                jobType != null) {
             jobsPage = jobRepository.findAllByIsDeletedFalseAndLocationContainingIgnoreCaseAndType(
-                pageable, location.trim(), jobType);
-        } else if (search != null && !search.trim().isEmpty() && 
-                   jobType != null) {
-            // Search and type filters
+                    pageable, location.trim(), jobType);
+        } else if (search != null && !search.trim().isEmpty() &&
+                jobType != null) {
             jobsPage = jobRepository.findAllByIsDeletedFalseAndTypeAndTitleOrDescriptionContainingIgnoreCase(
-                pageable, jobType, search.trim());
+                    pageable, jobType, search.trim());
         } else if (location != null && !location.trim().isEmpty()) {
-            // Only location filter
             jobsPage = jobRepository.findAllByIsDeletedFalseAndLocationContainingIgnoreCase(
-                pageable, location.trim());
+                    pageable, location.trim());
         } else if (search != null && !search.trim().isEmpty()) {
-            // Only search filter
             jobsPage = jobRepository.findAllByIsDeletedFalseAndTitleOrDescriptionContainingIgnoreCase(
-                pageable, search.trim());
+                    pageable, search.trim());
         } else if (jobType != null) {
-            // Only type filter
             jobsPage = jobRepository.findAllByIsDeletedFalseAndType(
-                pageable, jobType);
+                    pageable, jobType);
         } else {
-            // No filters
             jobsPage = jobRepository.findAllByIsDeletedFalse(pageable);
         }
-        
-        System.out.println("JobServiceImpl - Found " + jobsPage.getContent().size() + " jobs with filters");
-        
+
         return jobsPage.map(job -> {
-            // Load categories for each job
             List<JobCategory> jobCategories = jobCategoryRepository.findByJobId(job.getId());
             List<String> categoryNames = new ArrayList<>();
             for (JobCategory jobCategory : jobCategories) {
@@ -154,8 +137,7 @@ public class JobServiceImpl implements JobService {
     public JobResponse getJob(Long id) {
         var job = jobRepository.findById(id).orElse(null);
         if (job == null || job.isDeleted()) return null;
-        
-        // Load categories for the job
+
         List<JobCategory> jobCategories = jobCategoryRepository.findByJobId(job.getId());
         List<String> categoryNames = new ArrayList<>();
         for (JobCategory jobCategory : jobCategories) {
@@ -172,12 +154,9 @@ public class JobServiceImpl implements JobService {
     @Override
     public List<JobResponse> getJobsByCreator(Long creatorId) {
         try {
-            System.out.println("JobServiceImpl - Getting jobs for creator ID: " + creatorId);
             List<Job> jobs = jobRepository.findAllByCreateByUserIdAndIsDeletedFalse(creatorId);
-            System.out.println("JobServiceImpl - Found " + jobs.size() + " jobs in repository for creator ID: " + creatorId);
-            
+
             return jobs.stream().map(job -> {
-                // Load categories for each job
                 List<JobCategory> jobCategories = jobCategoryRepository.findByJobId(job.getId());
                 List<String> categoryNames = new ArrayList<>();
                 for (JobCategory jobCategory : jobCategories) {
@@ -191,7 +170,6 @@ public class JobServiceImpl implements JobService {
                 return response;
             }).toList();
         } catch (Exception e) {
-            System.out.println("JobServiceImpl - Exception in getJobsByCreator: " + e.getMessage());
             e.printStackTrace();
             throw e;
         }
@@ -224,8 +202,7 @@ public class JobServiceImpl implements JobService {
         job.setUpdatedAt(new Date().toString());
 
         jobRepository.save(job);
-        
-        // Handle categories if provided
+
         if (dto.getCategoryIds() != null && !dto.getCategoryIds().isEmpty()) {
             for (Number categoryId : dto.getCategoryIds()) {
                 Category category = categoryRepository.findById(categoryId.longValue()).orElse(null);
@@ -237,8 +214,7 @@ public class JobServiceImpl implements JobService {
                 }
             }
         }
-        
-        // Load categories for the response
+
         List<JobCategory> jobCategories = jobCategoryRepository.findByJobId(job.getId());
         List<String> categoryNames = new ArrayList<>();
         for (JobCategory jobCategory : jobCategories) {
@@ -270,13 +246,10 @@ public class JobServiceImpl implements JobService {
 
         jobRepository.save(job);
 
-        // Handle category updates if provided
         if (dto.getCategoryIds() != null) {
-            // Delete existing job categories
             List<JobCategory> existingJobCategories = jobCategoryRepository.findByJobId(job.getId());
             jobCategoryRepository.deleteAll(existingJobCategories);
-            
-            // Add new job categories
+
             for (Number categoryId : dto.getCategoryIds()) {
                 Category category = categoryRepository.findById(categoryId.longValue()).orElse(null);
                 if (category != null && !category.isDeleted()) {
@@ -288,7 +261,6 @@ public class JobServiceImpl implements JobService {
             }
         }
 
-        // Load categories for the response
         List<JobCategory> jobCategories = jobCategoryRepository.findByJobId(job.getId());
         List<String> categoryNames = new ArrayList<>();
         for (JobCategory jobCategory : jobCategories) {
@@ -311,7 +283,7 @@ public class JobServiceImpl implements JobService {
         jobRepository.save(job);
         return true;
     }
-    
+
     @Override
     public boolean isJobOwner(Long jobId, Long userId) {
         var job = jobRepository.findById(jobId).orElse(null);

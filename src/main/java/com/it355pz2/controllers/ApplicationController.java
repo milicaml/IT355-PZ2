@@ -37,32 +37,24 @@ public class ApplicationController {
     @PostMapping
     public ResponseEntity<ApplicationResponse> applyForJob(@RequestBody ApplicationDto applicationDto, Authentication authentication) {
         UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
-        
-        // Check if user is a freelancer
+
         if (principal.getUser().getUserType() != UserType.freelancer) {
-            System.out.println("ApplicationController - Access denied: User is not a freelancer. User type: " + principal.getUser().getUserType());
             return ResponseEntity.status(403).body(null);
         }
-        
-        System.out.println("ApplicationController - User authenticated: " + principal.getUser().getEmail());
-        System.out.println("ApplicationController - User type: " + principal.getUser().getUserType());
-        System.out.println("ApplicationController - Applying for job ID: " + applicationDto.getJobId());
-        
+
         ApplicationResponse application = applicationService.createApplication(
-            principal.getUser().getId(), 
-            applicationDto.getJobId(), 
-            applicationDto.getMessage()
+                principal.getUser().getId(),
+                applicationDto.getJobId(),
+                applicationDto.getMessage()
         );
-        
+
         if (application == null) {
-            // Check if it's a duplicate application
             if (applicationService.hasUserAppliedForJob(principal.getUser().getId(), applicationDto.getJobId())) {
-                System.out.println("ApplicationController - Duplicate application detected for user " + principal.getUser().getId() + " and job " + applicationDto.getJobId());
                 return ResponseEntity.status(409).body(null); // 409 Conflict for duplicate
             }
             return ResponseEntity.badRequest().build();
         }
-        
+
         return ResponseEntity.ok(application);
     }
 
@@ -90,7 +82,6 @@ public class ApplicationController {
         }
         return ResponseEntity.ok("Application deleted");
     }
-
 
 
 }

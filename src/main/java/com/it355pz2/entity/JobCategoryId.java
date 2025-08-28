@@ -1,13 +1,15 @@
 package com.it355pz2.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Data
 public class JobCategoryId implements Serializable {
     private Long jobId;
     private Long categoryId;
 
-    // Default constructor required by Hibernate
     public JobCategoryId() {
     }
 
@@ -16,7 +18,6 @@ public class JobCategoryId implements Serializable {
         this.categoryId = categoryId;
     }
 
-    // Getters and setters required by Hibernate
     public Long getJobId() {
         return jobId;
     }

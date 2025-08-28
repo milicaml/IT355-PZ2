@@ -42,6 +42,7 @@ public class ApplicationIntegrationTest {
     private ObjectMapper objectMapper;
 
     @Autowired
+
     private ApplicationRepository applicationRepository;
 
     @Autowired
@@ -77,7 +78,7 @@ public class ApplicationIntegrationTest {
         registerDto.setFullName("Milica");
         registerDto.setPhone("123");
         registerDto.setCity("Niš");
-        registerDto.setUserType(UserType.freelancer); 
+        registerDto.setUserType(UserType.freelancer);
 
         String payload = objectMapper.writeValueAsString(registerDto);
 
@@ -131,10 +132,9 @@ public class ApplicationIntegrationTest {
     @Test
     @Order(2)
     void shouldFetchApplicationById() throws Exception {
-        // Ensure testApplication is not null before proceeding
         Assertions.assertNotNull(testApplication, "testApplication should not be null");
         Assertions.assertNotNull(testApplication.getId(), "testApplication ID should not be null");
-        
+
         mockMvc.perform(get("/api/applications/" + testApplication.getId())
                         .header("Authorization", "Bearer " + jwtToken))
                 .andExpect(status().isOk())
@@ -145,12 +145,11 @@ public class ApplicationIntegrationTest {
     @Test
     @Order(3)
     void shouldUpdateApplicationStatus() throws Exception {
-        // Ensure testApplication is not null before proceeding
         Assertions.assertNotNull(testApplication, "testApplication should not be null");
         Assertions.assertNotNull(testApplication.getId(), "testApplication ID should not be null");
-        
+
         String statusUpdateJson = "{\"status\":\"accepted\"}";
-        
+
         mockMvc.perform(put("/api/applications/" + testApplication.getId() + "/status")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(statusUpdateJson)
@@ -162,10 +161,9 @@ public class ApplicationIntegrationTest {
     @Test
     @Order(4)
     void shouldDeleteApplication() throws Exception {
-        // Ensure testApplication is not null before proceeding
         Assertions.assertNotNull(testApplication, "testApplication should not be null");
         Assertions.assertNotNull(testApplication.getId(), "testApplication ID should not be null");
-        
+
         mockMvc.perform(delete("/api/applications/" + testApplication.getId())
                         .header("Authorization", "Bearer " + jwtToken))
                 .andExpect(status().isOk())

@@ -15,17 +15,16 @@ public class SkillResponse {
     private Long id;
     private String title;
     private ProficiencyLevel proficiencyLevel;
-    
+
     public void setCategories(List<String> categories) {
-        // This method is needed for JobResponse compatibility
     }
 
-    public SkillResponse(Skill skill){
+    public SkillResponse(Skill skill) {
         this.id = skill.getId();
         this.title = skill.getTitle();
     }
-    
-    public SkillResponse(Skill skill, ProficiencyLevel proficiencyLevel){
+
+    public SkillResponse(Skill skill, ProficiencyLevel proficiencyLevel) {
         this.id = skill.getId();
         this.title = skill.getTitle();
         this.proficiencyLevel = proficiencyLevel != null ? proficiencyLevel : ProficiencyLevel.BEGINNER;

@@ -23,7 +23,7 @@ public class OpenApiConfig {
                         .title("IT355PZ2 - Job Marketplace API")
                         .description("""
                                 Comprehensive REST API for the Job Marketplace application.
-                                
+                                                                
                                 ## Features
                                 - **User Management**: Registration, authentication, and profile management
                                 - **Job Posting**: Create, update, and manage job listings
@@ -31,23 +31,23 @@ public class OpenApiConfig {
                                 - **Skill Management**: Add skills with proficiency levels
                                 - **Category System**: Organize jobs and skills by categories
                                 - **Payment Types**: Support for various payment methods
-                                
+                                                                
                                 ## User Types
                                 - **EMPLOYER**: Can post jobs and manage applications
                                 - **FREELANCER**: Can apply for jobs and manage skills
                                 - **ADMIN**: Full system access and management
-                                
+                                                                
                                 ## Authentication
                                 This API uses JWT (JSON Web Token) authentication. Include the JWT token in the Authorization header:
                                 ```
-                                Authorization: Bearer <your-jwt-token>
+                                Authorization: Bearer <jwt-token>
                                 ```
                                 """)
                         .version("1.0.0")
                         .contact(new Contact()
                                 .name("IT355PZ2 Development Team")
                                 .email("support@jobmarketplace.com")
-                                .url("https://github.com/your-repo"))
+                                .url("https://github.com/"))
                         .license(new License()
                                 .name("MIT License")
                                 .url("https://opensource.org/licenses/MIT")))

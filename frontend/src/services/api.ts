@@ -31,7 +31,6 @@ class ApiService {
       },
     });
 
-    // Request interceptor to add auth token
     this.api.interceptors.request.use(
       (config) => {
         const token = localStorage.getItem('token');
@@ -45,7 +44,6 @@ class ApiService {
       }
     );
 
-    // Response interceptor to handle auth errors more intelligently
     this.api.interceptors.response.use(
       (response) => response,
       (error) => {
@@ -53,17 +51,13 @@ class ApiService {
         console.log('API Error URL:', error.config?.url);
         console.log('API Error Method:', error.config?.method);
         
-        // Only handle 401 errors for authentication-related endpoints
         if (error.response?.status === 401) {
           const requestUrl = error.config?.url || '';
           
-          // Only auto-logout for auth validation endpoints, not for other API calls
           if (requestUrl.includes('/auth/validate')) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
-            // Don't redirect immediately, let the AuthContext handle it
           }
-          // For other endpoints, just reject the promise and let the component handle the error
         }
         return Promise.reject(error);
       }

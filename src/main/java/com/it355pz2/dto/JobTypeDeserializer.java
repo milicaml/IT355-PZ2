@@ -14,16 +14,14 @@ public class JobTypeDeserializer extends JsonDeserializer<JobType> {
         if (value == null) {
             return null;
         }
-        
+
         try {
-            // First try to find by value directly (for lowercase values like "full_time")
             for (JobType jobType : JobType.values()) {
                 if (jobType.getValue().equals(value)) {
                     return jobType;
                 }
             }
-            
-            // If not found by value, try to convert to enum name
+
             return JobType.valueOf(value.toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Invalid job type: " + value);

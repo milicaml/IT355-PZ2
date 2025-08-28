@@ -29,7 +29,6 @@ public class ApplicationServiceImpl implements ApplicationService {
         
         // Check if user has already applied for this job
         if (applicationRepository.existsByUserIdAndJobIdAndIsDeletedFalse(userId, jobId)) {
-            System.out.println("ApplicationService - User " + userId + " has already applied for job " + jobId);
             return null;
         }
         
@@ -64,11 +63,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public List<ApplicationResponse> getApplicationsForEmployer(Long employerId) {
-        // Get all jobs posted by the employer, then get applications for those jobs
         List<Job> employerJobs = jobRepository.findAllByCreateByUserIdAndIsDeletedFalse(employerId);
         List<Application> allApplications = applicationRepository.findAll();
         
-        // Filter applications to only include those for jobs posted by the employer
         List<Application> employerApplications = allApplications.stream()
             .filter(application -> employerJobs.stream()
                 .anyMatch(job -> job.getId().equals(application.getJob().getId())))

@@ -41,12 +41,10 @@ public class JobResponse {
         this.paymentAmount = job.getPaymentAmount();
         this.paymentType = job.getPaymentType().getTitle();
         this.urgent = job.getUrgent();
-        
-        // Initialize empty categories list
+
         this.categories = new ArrayList<>();
     }
 
-    // Static method to create paginated response wrapper
     public static PaginatedJobResponse createPaginatedResponse(Page<JobResponse> page) {
         PaginatedJobResponse response = new PaginatedJobResponse();
         response.setContent(page.getContent());
@@ -57,7 +55,6 @@ public class JobResponse {
         return response;
     }
 
-    // Inner class for paginated response
     @Data
     public static class PaginatedJobResponse {
         private List<JobResponse> content;

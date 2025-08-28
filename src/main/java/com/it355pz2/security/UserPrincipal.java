@@ -20,7 +20,6 @@ public class UserPrincipal implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String role = "ROLE_" + user.getUserType().name().toUpperCase();
-        System.out.println("UserPrincipal - User: " + user.getUsername() + ", UserType: " + user.getUserType() + ", Generated Role: " + role);
         return Set.<GrantedAuthority>of(new SimpleGrantedAuthority(role));
     }
 

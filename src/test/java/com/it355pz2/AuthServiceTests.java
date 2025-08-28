@@ -62,7 +62,7 @@ public class AuthServiceTests {
         dto.setEmail("email");
         dto.setPhone("123");
         dto.setCity("Niš");
-        dto.setUserType(UserType.freelancer); // Added userType
+        dto.setUserType(UserType.freelancer);
 
         when(passwordEncoder.encode("1234")).thenReturn("hashed1234");
 
