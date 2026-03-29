@@ -16,8 +16,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f9fafb;
-  color: #1f2937;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
   line-height: 1.6;
 }
 
@@ -41,14 +41,47 @@ ul, ol {
   list-style: none;
 }
 
-/* Remove default input styles */
-input, textarea, select {
+/* Normalize form controls for dark palette */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+input[type="date"],
+input[type="datetime-local"],
+textarea,
+select {
   font-family: inherit;
+  color: var(--color-text-primary);
+  background-color: var(--color-card);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 1;
+}
+
+select option {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+}
+
+/* Keep autofill readable in dark fields */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-text-primary);
+  box-shadow: 0 0 0 1000px var(--color-card) inset;
 }
 
 /* Focus styles for accessibility */
 *:focus {
-  outline: 2px solid #4f46e5;
+  outline: 2px solid var(--color-highlight);
   outline-offset: 2px;
 }
 

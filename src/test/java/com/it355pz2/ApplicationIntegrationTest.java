@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.it355pz2.utility.DateUtility.getCurrentDateTime;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -98,8 +99,8 @@ public class ApplicationIntegrationTest {
         paymentType.setTitle("Po satu");
         paymentType.setDescription("Plaćanje po satu rada");
         paymentType.setDeleted(false);
-        paymentType.setCreatedAt(new Date().toString());
-        paymentType.setUpdatedAt(new Date().toString());
+        paymentType.setCreatedAt(getCurrentDateTime());
+        paymentType.setUpdatedAt(getCurrentDateTime());
         paymentType = paymentTypeRepository.save(paymentType);
 
         job = new Job();
@@ -114,16 +115,16 @@ public class ApplicationIntegrationTest {
         job.setPaymentAmount(1000);
         job.setPaymentType(paymentType);
         job.setUrgent(0);
-        job.setCreatedAt(new Date().toString());
-        job.setUpdatedAt(new Date().toString());
+        job.setCreatedAt(getCurrentDateTime());
+        job.setUpdatedAt(getCurrentDateTime());
         job = jobRepository.save(job);
 
         testApplication = new Application();
         testApplication.setDescription("Test application");
         testApplication.setStatus(ApplicationStatus.pending);
         testApplication.setDeleted(false);
-        testApplication.setCreatedAt(new Date().toString());
-        testApplication.setUpdatedAt(new Date().toString());
+        testApplication.setCreatedAt(getCurrentDateTime());
+        testApplication.setUpdatedAt(getCurrentDateTime());
         testApplication.setUser(user);
         testApplication.setJob(job);
         testApplication = applicationRepository.save(testApplication);

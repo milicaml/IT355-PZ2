@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+import static com.it355pz2.utility.DateUtility.getCurrentDateTime;
+
 @AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
@@ -42,7 +44,7 @@ public class UserServiceImpl implements UserService {
         if (updatedUser.getPhone() != null) user.setPhone(updatedUser.getPhone());
         if (updatedUser.getCity() != null) user.setCity(updatedUser.getCity());
         if (updatedUser.getUserType() != null) user.setUserType(updatedUser.getUserType());
-        user.setUpdatedAt(new Date().toString());
+        user.setUpdatedAt(getCurrentDateTime());
         userRepository.save(user);
 
         return new UserResponse(user);
@@ -54,7 +56,7 @@ public class UserServiceImpl implements UserService {
         if (user == null || user.isDeleted()) return false;
 
         user.setDeleted(true);
-        user.setUpdatedAt(new Date().toString());
+        user.setUpdatedAt(getCurrentDateTime());
 
         userRepository.save(user);
         return true;

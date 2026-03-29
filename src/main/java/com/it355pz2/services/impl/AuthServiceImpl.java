@@ -42,13 +42,16 @@ public class AuthServiceImpl implements AuthService {
 
         String token = jwtTokenProvider.generateToken(authentication);
 
+
+        User currentUser = userRepository.findByUsername(loginDto.getUsername()).get();
+
         Token tokenEntity = new Token();
         tokenEntity.setToken(token);
         tokenEntity.setCreatedAt(getCurrentDateTime());
         tokenEntity.setUpdatedAt(getCurrentDateTime());
-//        tokenEntity.setUser((User) authentication.getPrincipal());
-        tokenEntity.setUser(null); //! This need to be changed
-        tokenEntity.setExpiresAt(new Date().toString()); //! This need to be changed
+        tokenEntity.setUser(currentUser);
+//        tokenEntity.setUser(null); //! This need to be changed
+        tokenEntity.setExpiresAt(getCurrentDateTime()); //! This need to be changed
         tokenRepository.save(tokenEntity);
 
         return token;

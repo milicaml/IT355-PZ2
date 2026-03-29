@@ -30,6 +30,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import static com.it355pz2.utility.DateUtility.getCurrentDateTime;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -82,8 +83,8 @@ public class WorkflowIntegrationTest {
             paymentType.setTitle("Test Payment Type");
             paymentType.setDescription("Payment type for testing");
             paymentType.setDeleted(false);
-            paymentType.setCreatedAt(new Date().toString());
-            paymentType.setUpdatedAt(new Date().toString());
+            paymentType.setCreatedAt(getCurrentDateTime());
+            paymentType.setUpdatedAt(getCurrentDateTime());
             paymentType = paymentTypeRepository.save(paymentType);
         } else {
             paymentType = existingPaymentTypes.get(0);

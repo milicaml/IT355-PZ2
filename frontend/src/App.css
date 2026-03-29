@@ -1,8 +1,74 @@
-/* Reset and Base Styles */
+﻿/* Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  --color-bg: #1B2230;
+  --color-bg-primary: #212A39;
+  --color-bg-secondary: #263042;
+  --color-card: #354158;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #D9DBE7;
+  --color-highlight: #EEC500;
+  --color-error: #DE6B58;
+  --color-success: #59CC00;
+
+  
+  --color-gray-50: #263042;
+  --color-slate-50: #263042;
+  --color-gray-100: #263042;
+  --color-gray-125: #263042;
+  --color-gray-200: #354158;
+  --color-gray-225: #354158;
+  --color-gray-300: #3E4A62;
+  --color-gray-325: #3E4A62;
+  --color-gray-400: #4C5871;
+  --color-gray-500: #D9DBE7;
+  --color-gray-550: #D9DBE7;
+  --color-gray-600: #E6E8F0;
+  --color-gray-625: #E6E8F0;
+  --color-gray-650: #E6E8F0;
+  --color-gray-700: #FFFFFF;
+  --color-gray-750: #FFFFFF;
+  --color-gray-800: #FFFFFF;
+  --color-gray-900: #FFFFFF;
+  --color-indigo-600: #EEC500;
+  --color-indigo-700: #C9A800;
+  --color-blue-100: #263042;
+  --color-blue-200: #354158;
+  --color-blue-500: #EEC500;
+  --color-blue-600: #D4B000;
+  --color-blue-800: #8A7300;
+  --color-brand-blue: #EEC500;
+  --color-brand-blue-dark: #C9A800;
+  --color-emerald-100: #263A21;
+  --color-emerald-200: #345229;
+  --color-emerald-500: #59CC00;
+  --color-emerald-600: #4EAF00;
+  --color-emerald-800: #2F6B00;
+  --color-green-50: #263A21;
+  --color-green-200: #345229;
+  --color-green-800: #2F6B00;
+  --color-amber-100: #3D3416;
+  --color-amber-500: #EEC500;
+  --color-amber-800: #8A7300;
+  --color-violet-500: #263042;
+  --color-red-50: #3A2523;
+  --color-red-100: #4A2F2C;
+  --color-red-150: #5B3833;
+  --color-red-200: #6B423C;
+  --color-red-250: #7C4B44;
+  --color-red-500: #DE6B58;
+  --color-red-600: #C95B4A;
+  --color-red-800: #8E3F33;
+  --color-red-900: #742F25;
+  --color-red-950: #5A241D;
+  --color-danger-500: #DE6B58;
+  --color-danger-600: #C95B4A;
+  --color-danger-700: #A54A3C;
+  --color-auth-primary: #1B2230;
+  --color-auth-secondary: #263042;
 }
 
 body {
@@ -11,8 +77,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f9fafb;
-  color: #1f2937;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
   line-height: 1.6;
 }
 
@@ -25,7 +91,7 @@ body {
 
 .main-content {
   flex: 1;
-  padding-top: 1rem;
+  /* padding-top: 1rem; */
 }
 
 /* Global Button Styles */
@@ -45,48 +111,48 @@ body {
 }
 
 .btn-primary {
-  background: #4f46e5;
-  color: white;
+  background: var(--color-highlight);
+  color: var(--color-bg);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #4338ca;
+  background: var(--color-bg-primary);
   transform: translateY(-1px);
 }
 
 .btn-primary:disabled {
-  background: #9ca3af;
+  background: var(--color-gray-400);
   cursor: not-allowed;
   transform: none;
 }
 
 .btn-secondary {
-  background: #f3f4f6;
-  color: #374151;
-  border: 1px solid #d1d5db;
+  background: var(--color-gray-100);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-gray-300);
 }
 
 .btn-secondary:hover {
-  background: #e5e7eb;
-  border-color: #9ca3af;
+  background: var(--color-gray-200);
+  border-color: var(--color-text-secondary);
 }
 
 .btn-danger {
-  background: #ef4444;
+  background: var(--color-error);
   color: white;
 }
 
 .btn-danger:hover {
-  background: #dc2626;
+  opacity: 0.8;
 }
 
 .btn-success {
-  background: #10b981;
+  background: var(--color-success);
   color: white;
 }
 
 .btn-success:hover {
-  background: #059669;
+  opacity: 0.8;
 }
 
 /* Loading States */
@@ -95,15 +161,15 @@ body {
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  color: #6b7280;
+  color: var(--color-text-secondary);
   font-size: 1rem;
 }
 
 /* Error Messages */
 .error-message {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #dc2626;
+  background: var(--color-red-50);
+  border: 1px solid var(--color-red-200);
+  color: var(--color-red-600);
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1rem;
@@ -112,9 +178,9 @@ body {
 
 /* Success Messages */
 .success-message {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  color: #166534;
+  background: var(--color-green-50);
+  border: 1px solid var(--color-green-200);
+  color: var(--color-green-800);
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1rem;
@@ -129,11 +195,11 @@ body {
 }
 
 .form-card {
-  background: white;
+  background: var(--color-card);
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-gray-200);
 }
 
 .form-header {
@@ -142,14 +208,14 @@ body {
 }
 
 .form-header h2 {
-  color: #1f2937;
+  color: var(--color-text-primary);
   font-size: 1.875rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
 .form-header p {
-  color: #6b7280;
+  color: var(--color-text-secondary);
   font-size: 1rem;
 }
 
@@ -159,7 +225,7 @@ body {
 
 .form-group label {
   display: block;
-  color: #374151;
+  color: var(--color-text-primary);
   font-weight: 500;
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
@@ -168,31 +234,31 @@ body {
 .form-input {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--color-gray-300);
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background: white;
+  background: var(--color-card);
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #4f46e5;
+  border-color: var(--color-indigo-600);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
 .form-input::placeholder {
-  color: #9ca3af;
+  color: var(--color-text-secondary);
 }
 
 .form-textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--color-gray-300);
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background: white;
+  background: var(--color-card);
   resize: vertical;
   min-height: 120px;
   font-family: inherit;
@@ -200,21 +266,21 @@ body {
 
 .form-textarea:focus {
   outline: none;
-  border-color: #4f46e5;
+  border-color: var(--color-indigo-600);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
 .form-textarea::placeholder {
-  color: #9ca3af;
+  color: var(--color-text-secondary);
 }
 
 /* Card Styles */
 .card {
-  background: white;
+  background: var(--color-card);
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-gray-200);
   transition: all 0.3s ease;
 }
 
@@ -233,23 +299,23 @@ body {
 }
 
 .badge-primary {
-  background: #dbeafe;
-  color: #1e40af;
+  background: var(--color-blue-100);
+  color: var(--color-blue-800);
 }
 
 .badge-success {
-  background: #d1fae5;
-  color: #065f46;
+  background: var(--color-emerald-100);
+  color: var(--color-emerald-800);
 }
 
 .badge-warning {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--color-amber-100);
+  color: var(--color-amber-800);
 }
 
 .badge-danger {
-  background: #fee2e2;
-  color: #991b1b;
+  background: var(--color-red-100);
+  color: var(--color-red-800);
 }
 
 /* Utility Classes */
@@ -320,3 +386,4 @@ body {
     padding: 0.625rem 0.875rem;
   }
 }
+

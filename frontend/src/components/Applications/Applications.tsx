@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import apiService from '../../services/api';
 import type { Application } from '../../types';
@@ -28,11 +28,11 @@ const Applications: React.FC = () => {
 
   const getStatusColor = (status: string) => {
     const colors = {
-      'pending': '#f59e0b',
-      'accepted': '#10b981',
-      'rejected': '#ef4444'
+      'pending': 'var(--color-amber-500)',
+      'accepted': 'var(--color-emerald-500)',
+      'rejected': 'var(--color-red-500)'
     };
-    return colors[status as keyof typeof colors] || '#6b7280';
+    return colors[status as keyof typeof colors] || 'var(--color-gray-500)';
   };
 
 
@@ -115,3 +115,4 @@ const Applications: React.FC = () => {
 };
 
 export default Applications;
+

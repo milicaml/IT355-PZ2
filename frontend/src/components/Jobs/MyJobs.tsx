@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import apiService from '../../services/api';
@@ -66,29 +66,29 @@ const MyJobs: React.FC = () => {
 
   const getJobTypeColor = (jobType: string) => {
     const colors = {
-      'FULL_TIME': '#10b981',
-      'PART_TIME': '#f59e0b',
-      'CONTRACT': '#8b5cf6',
-      'TEMPORARY': '#ef4444',
-      'full_time': '#10b981',
-      'part_time': '#f59e0b',
-      'contract': '#8b5cf6',
-      'temporary': '#ef4444'
+      'FULL_TIME': 'var(--color-emerald-500)',
+      'PART_TIME': 'var(--color-amber-500)',
+      'CONTRACT': 'var(--color-violet-500)',
+      'TEMPORARY': 'var(--color-red-500)',
+      'full_time': 'var(--color-emerald-500)',
+      'part_time': 'var(--color-amber-500)',
+      'contract': 'var(--color-violet-500)',
+      'temporary': 'var(--color-red-500)'
     };
-    return colors[jobType as keyof typeof colors] || '#6b7280';
+    return colors[jobType as keyof typeof colors] || 'var(--color-gray-500)';
   };
 
   const getStatusColor = (status: string) => {
     const colors = {
-      'ACTIVE': '#10b981',
-      'COMPLETED': '#6b7280',
-      'CANCELLED': '#ef4444',
-      'open': '#10b981',
-      'in_progress': '#f59e0b',
-      'completed': '#6b7280',
-      'cancelled': '#ef4444'
+      'ACTIVE': 'var(--color-emerald-500)',
+      'COMPLETED': 'var(--color-gray-500)',
+      'CANCELLED': 'var(--color-red-500)',
+      'open': 'var(--color-emerald-500)',
+      'in_progress': 'var(--color-amber-500)',
+      'completed': 'var(--color-gray-500)',
+      'cancelled': 'var(--color-red-500)'
     };
-    return colors[status as keyof typeof colors] || '#6b7280';
+    return colors[status as keyof typeof colors] || 'var(--color-gray-500)';
   };
 
   if (loading) {
@@ -191,3 +191,4 @@ const MyJobs: React.FC = () => {
 };
 
 export default MyJobs;
+

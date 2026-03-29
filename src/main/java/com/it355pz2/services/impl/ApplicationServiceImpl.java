@@ -43,7 +43,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         application.setDescription(description);
         application.setStatus(ApplicationStatus.pending);
         application.setCreatedAt(getCurrentDateTime());
-        application.setUpdatedAt(new Date().toString());
+        application.setUpdatedAt(getCurrentDateTime());
 
         return new ApplicationResponse(applicationRepository.save(application));
     }
@@ -91,7 +91,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         Application application = applicationRepository.findById(id).orElse(null);
         if (application == null || application.isDeleted()) return false;
         application.setDeleted(true);
-        application.setUpdatedAt(new Date().toString());
+        application.setUpdatedAt(getCurrentDateTime());
 
         applicationRepository.save(application);
         return true;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import apiService from '../../services/api';
@@ -56,11 +56,11 @@ const JobApplications: React.FC = () => {
 
   const getStatusColor = (status: string) => {
     const colors = {
-      'pending': '#f59e0b',
-      'accepted': '#10b981',
-      'rejected': '#ef4444'
+      'pending': 'var(--color-amber-500)',
+      'accepted': 'var(--color-emerald-500)',
+      'rejected': 'var(--color-red-500)'
     };
-    return colors[status as keyof typeof colors] || '#6b7280';
+    return colors[status as keyof typeof colors] || 'var(--color-gray-500)';
   };
 
   const getStatusIcon = (status: string) => {
@@ -207,5 +207,6 @@ const JobApplications: React.FC = () => {
 };
 
 export default JobApplications;
+
 
 

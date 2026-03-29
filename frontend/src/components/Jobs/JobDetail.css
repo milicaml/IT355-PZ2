@@ -1,4 +1,4 @@
-.job-detail-container {
+﻿.job-detail-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1rem;
@@ -18,8 +18,8 @@
   align-items: center;
   gap: 0.5rem;
   background: none;
-  border: 1px solid #d1d5db;
-  color: #6b7280;
+  border: 1px solid var(--color-gray-300);
+  color: var(--color-text-secondary);
   padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
@@ -28,9 +28,9 @@
 }
 
 .back-button:hover {
-  background: #f9fafb;
-  border-color: #9ca3af;
-  color: #374151;
+  background: var(--color-gray-50);
+  border-color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 .job-actions {
@@ -40,11 +40,11 @@
 }
 
 .job-detail-content {
-  background: white;
+  background: var(--color-card);
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-gray-200);
 }
 
 .job-main-info {
@@ -59,7 +59,7 @@
 }
 
 .job-title-section h1 {
-  color: #1f2937;
+  color: var(--color-text-primary);
   font-size: 2rem;
   font-weight: 700;
   margin: 0;
@@ -67,7 +67,7 @@
 }
 
 .urgent-badge {
-  background: #ef4444;
+  background: var(--color-red-500);
   color: white;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
@@ -80,7 +80,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #6b7280;
+  color: var(--color-text-secondary);
   font-size: 1rem;
   margin-bottom: 1.5rem;
 }
@@ -96,7 +96,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #6b7280;
+  color: var(--color-text-secondary);
   font-size: 0.875rem;
 }
 
@@ -119,18 +119,18 @@
 .job-description {
   margin-bottom: 2rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--color-gray-200);
 }
 
 .job-description h2 {
-  color: #1f2937;
+  color: var(--color-text-primary);
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .description-content {
-  color: #4b5563;
+  color: var(--color-text-secondary);
   line-height: 1.7;
 }
 
@@ -147,7 +147,7 @@
 }
 
 .job-categories h2 {
-  color: #1f2937;
+  color: var(--color-text-primary);
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -160,12 +160,12 @@
 }
 
 .category-tag {
-  background: #f3f4f6;
-  color: #374151;
+  background: var(--color-gray-100);
+  color: var(--color-text-primary);
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   font-size: 0.75rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-gray-200);
 }
 
 .job-skills {
@@ -173,7 +173,7 @@
 }
 
 .job-skills h2 {
-  color: #1f2937;
+  color: var(--color-text-primary);
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -186,28 +186,28 @@
 }
 
 .skill-tag {
-  background: #dbeafe;
-  color: #1e40af;
+  background: var(--color-blue-100);
+  color: var(--color-blue-800);
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   font-size: 0.75rem;
-  border: 1px solid #bfdbfe;
+  border: 1px solid var(--color-blue-200);
 }
 
 .no-categories,
 .no-skills {
-  color: #6b7280;
+  color: var(--color-text-secondary);
   font-style: italic;
   font-size: 0.875rem;
 }
 
 .job-footer {
   padding-top: 1.5rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--color-gray-200);
 }
 
 .job-created-info {
-  color: #6b7280;
+  color: var(--color-text-secondary);
   font-size: 0.875rem;
 }
 
@@ -225,8 +225,8 @@
 }
 
 .apply-info {
-  background: #f3f4f6;
-  border: 1px solid #d1d5db;
+  background: var(--color-gray-100);
+  border: 1px solid var(--color-gray-300);
   border-radius: 8px;
   padding: 1rem;
   margin-top: 0.5rem;
@@ -234,19 +234,19 @@
 
 .apply-message {
   margin: 0;
-  color: #6b7280;
+  color: var(--color-text-secondary);
   font-size: 0.875rem;
   text-align: center;
 }
 
 .apply-message strong {
-  color: #374151;
+  color: var(--color-text-primary);
   font-weight: 600;
 }
 
 .success-message {
-  background: #d1fae5;
-  border: 1px solid #a7f3d0;
+  background: var(--color-emerald-100);
+  border: 1px solid var(--color-emerald-200);
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -255,7 +255,7 @@
 
 .success-message p {
   margin: 0;
-  color: #065f46;
+  color: var(--color-emerald-800);
   font-weight: 500;
 }
 
@@ -313,3 +313,5 @@
     justify-content: center;
   }
 }
+
+

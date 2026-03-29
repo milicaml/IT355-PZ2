@@ -199,7 +199,7 @@ public class JobServiceImpl implements JobService {
         job.setArchived(false);
         job.setDeleted(false);
         job.setCreatedAt(getCurrentDateTime());
-        job.setUpdatedAt(new Date().toString());
+        job.setUpdatedAt(getCurrentDateTime());
 
         jobRepository.save(job);
 

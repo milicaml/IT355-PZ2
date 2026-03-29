@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import apiService from '../../services/api';
@@ -85,22 +85,22 @@ const JobList: React.FC = () => {
 
   const getJobTypeColor = (jobType: string) => {
     const colors = {
-      'full_time': '#10b981',
-      'part_time': '#f59e0b',
-      'contract': '#8b5cf6',
-      'temporary': '#ef4444'
+      'full_time': 'var(--color-emerald-500)',
+      'part_time': 'var(--color-amber-500)',
+      'contract': 'var(--color-violet-500)',
+      'temporary': 'var(--color-red-500)'
     };
-    return colors[jobType as keyof typeof colors] || '#6b7280';
+    return colors[jobType as keyof typeof colors] || 'var(--color-gray-500)';
   };
 
   const getStatusColor = (status: string) => {
     const colors = {
-      'open': '#10b981',
-      'in_progress': '#f59e0b',
-      'completed': '#6b7280',
-      'cancelled': '#ef4444'
+      'open': 'var(--color-emerald-500)',
+      'in_progress': 'var(--color-amber-500)',
+      'completed': 'var(--color-gray-500)',
+      'cancelled': 'var(--color-red-500)'
     };
-    return colors[status as keyof typeof colors] || '#6b7280';
+    return colors[status as keyof typeof colors] || 'var(--color-gray-500)';
   };
 
   if (loading) {

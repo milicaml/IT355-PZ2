@@ -1,7 +1,7 @@
-.user-skills {
+﻿.user-skills {
   margin-top: 2rem;
   padding: 1.5rem;
-  background: white;
+  background: var(--color-card);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -15,16 +15,16 @@
 
 .skills-header h3 {
   margin: 0;
-  color: #333;
+  color: var(--color-text-primary);
   font-size: 1.25rem;
 }
 
 .add-skill-form {
-  background: #f8f9fa;
+  background: var(--color-gray-125);
   padding: 1.5rem;
   border-radius: 8px;
   margin-bottom: 1.5rem;
-  border: 1px solid #e9ecef;
+  border: 1px solid var(--color-gray-225);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -36,21 +36,21 @@
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
-  color: #495057;
+  color: var(--color-text-primary);
 }
 
 .form-select {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--color-gray-325);
   border-radius: 4px;
   font-size: 0.875rem;
-  background-color: white;
+  background-color: var(--color-card);
 }
 
 .form-select:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: var(--color-brand-blue);
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
@@ -67,15 +67,15 @@
 }
 
 .skill-item {
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
+  background: var(--color-gray-125);
+  border: 1px solid var(--color-gray-225);
   border-radius: 8px;
   padding: 1.25rem;
   transition: all 0.2s ease;
 }
 
 .skill-item:hover {
-  border-color: #007bff;
+  border-color: var(--color-brand-blue);
   box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
 }
 
@@ -89,7 +89,7 @@
 
 .skill-title {
   font-weight: 500;
-  color: #333;
+  color: var(--color-text-primary);
   font-size: 1rem;
   flex: 1;
   min-width: 0;
@@ -103,7 +103,7 @@
 }
 
 .proficiency-badge {
-  background: #007bff;
+  background: var(--color-brand-blue);
   color: white;
   padding: 0.375rem 0.75rem;
   border-radius: 16px;
@@ -128,7 +128,7 @@
 
 .no-skills {
   text-align: center;
-  color: #6c757d;
+  color: var(--color-text-secondary);
   font-style: italic;
   padding: 2rem;
 }
@@ -153,50 +153,50 @@
 }
 
 .btn-danger {
-  background-color: #dc3545;
-  border-color: #dc3545;
+  background-color: var(--color-danger-500);
+  border-color: var(--color-danger-500);
   color: white;
 }
 
 .btn-danger:hover {
-  background-color: #c82333;
-  border-color: #bd2130;
+  background-color: var(--color-danger-600);
+  border-color: var(--color-danger-700);
 }
 
 .btn-secondary {
-  background-color: #6c757d;
-  border-color: #6c757d;
+  background-color: var(--color-text-secondary);
+  border-color: var(--color-text-secondary);
   color: white;
 }
 
 .btn-secondary:hover {
-  background-color: #5a6268;
-  border-color: #545b62;
+  background-color: var(--color-text-secondary);
+  border-color: var(--color-text-secondary);
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: var(--color-brand-blue);
+  border-color: var(--color-brand-blue);
   color: white;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: var(--color-brand-blue-dark);
+  border-color: var(--color-brand-blue-dark);
 }
 
 .error-message {
-  background: #f8d7da;
-  color: #721c24;
+  background: var(--color-red-150);
+  color: var(--color-red-950);
   padding: 0.75rem;
   border-radius: 4px;
   margin-bottom: 1rem;
-  border: 1px solid #f5c6cb;
+  border: 1px solid var(--color-red-250);
 }
 
 .loading {
   text-align: center;
-  color: #6c757d;
+  color: var(--color-text-secondary);
   padding: 2rem;
 }
 
@@ -239,3 +239,5 @@
     width: 100%;
   }
 }
+
+

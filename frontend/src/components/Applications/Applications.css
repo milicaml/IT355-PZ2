@@ -1,4 +1,4 @@
-.applications-container {
+﻿.applications-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
@@ -10,14 +10,14 @@
 }
 
 .applications-header h1 {
-  color: #1f2937;
+  color: var(--color-text-primary);
   font-size: 2rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
 }
 
 .applications-header p {
-  color: #6b7280;
+  color: var(--color-text-secondary);
   font-size: 1rem;
   margin: 0;
 }
@@ -29,11 +29,11 @@
 }
 
 .application-card {
-  background: white;
+  background: var(--color-card);
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-gray-200);
   transition: all 0.3s ease;
 }
 
@@ -53,7 +53,7 @@
   margin: 0;
   font-size: 1.125rem;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--color-text-primary);
   flex: 1;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .job-title a:hover {
-  color: #4f46e5;
+  color: var(--color-indigo-600);
 }
 
 .status-badge {
@@ -87,27 +87,27 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #6b7280;
+  color: var(--color-text-secondary);
   font-size: 0.875rem;
 }
 
 .application-message {
   margin-bottom: 1.5rem;
   padding: 1rem;
-  background: #f9fafb;
+  background: var(--color-gray-50);
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-gray-200);
 }
 
 .application-message h4 {
-  color: #374151;
+  color: var(--color-text-primary);
   font-size: 0.875rem;
   font-weight: 600;
   margin: 0 0 0.5rem 0;
 }
 
 .application-message p {
-  color: #4b5563;
+  color: var(--color-text-secondary);
   font-size: 0.875rem;
   line-height: 1.5;
   margin: 0;
@@ -121,7 +121,7 @@
 .no-applications {
   text-align: center;
   padding: 3rem;
-  color: #6b7280;
+  color: var(--color-text-secondary);
 }
 
 .no-applications p {
@@ -148,8 +148,8 @@
   align-items: center;
   gap: 0.5rem;
   background: none;
-  border: 1px solid #d1d5db;
-  color: #6b7280;
+  border: 1px solid var(--color-gray-300);
+  color: var(--color-text-secondary);
   padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
@@ -158,13 +158,13 @@
 }
 
 .back-button:hover {
-  background: #f9fafb;
-  border-color: #9ca3af;
-  color: #374151;
+  background: var(--color-gray-50);
+  border-color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 .application-form-header h1 {
-  color: #1f2937;
+  color: var(--color-text-primary);
   font-size: 1.875rem;
   font-weight: 700;
   margin: 0;
@@ -177,15 +177,15 @@
 }
 
 .job-summary {
-  background: white;
+  background: var(--color-card);
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-gray-200);
 }
 
 .job-summary h2 {
-  color: #1f2937;
+  color: var(--color-text-primary);
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0 0 1rem 0;
@@ -198,17 +198,17 @@
 }
 
 .job-summary-details p {
-  color: #6b7280;
+  color: var(--color-text-secondary);
   font-size: 0.875rem;
   margin: 0;
 }
 
 .application-form-card {
-  background: white;
+  background: var(--color-card);
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-gray-200);
 }
 
 .application-form {
@@ -224,18 +224,18 @@
 }
 
 .form-group label {
-  color: #374151;
+  color: var(--color-text-primary);
   font-weight: 500;
   font-size: 0.875rem;
 }
 
 .form-textarea {
   padding: 0.75rem 1rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--color-gray-300);
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background: white;
+  background: var(--color-card);
   resize: vertical;
   min-height: 200px;
   font-family: inherit;
@@ -243,13 +243,13 @@
 
 .form-textarea:focus {
   outline: none;
-  border-color: #4f46e5;
+  border-color: var(--color-indigo-600);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
 .char-count {
   text-align: right;
-  color: #6b7280;
+  color: var(--color-text-secondary);
   font-size: 0.75rem;
 }
 
@@ -258,13 +258,13 @@
   gap: 1rem;
   justify-content: flex-end;
   padding-top: 1rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--color-gray-200);
 }
 
 .error-message {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #dc2626;
+  background: var(--color-red-50);
+  border: 1px solid var(--color-red-200);
+  color: var(--color-red-600);
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1rem;
@@ -272,18 +272,18 @@
 }
 
 .error-message h2 {
-  color: #dc2626;
+  color: var(--color-red-600);
   margin: 0 0 0.5rem 0;
   font-size: 1.25rem;
 }
 
 .error-message p {
   margin: 0.5rem 0;
-  color: #7f1d1d;
+  color: var(--color-red-900);
 }
 
 .error-message strong {
-  color: #dc2626;
+  color: var(--color-red-600);
   font-weight: 600;
 }
 
@@ -355,3 +355,5 @@
     padding: 0.625rem 0.875rem;
   }
 }
+
+
